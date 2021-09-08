@@ -14,21 +14,57 @@ static const unsigned int gappiv    = 15;       /* vert inner gap between window
 static const unsigned int gappoh    = 15;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 15;       /* vert outer gap between windows and screen edge */
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
-static const int showbar            = 1;        /* 0 means no bar */
+static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char col_urgborder[]   = "#ff0000";
+static const char *fonts[]          = { "xft:Cascadia Code:size 14" };
+static const char dmenufont[]       = "xft:Cascadia Code:size 14";
+
+/* static const char col_gray1[]       = "#222222"; */
+/* static const char col_gray2[]       = "#444444"; */
+/* static const char col_gray3[]       = "#bbbbbb"; */
+/* static const char col_gray4[]       = "#eeeeee"; */
+/* static const char col_cyan[]        = "#005577"; */
+/* static const char col_urgborder[]   = "#ff0000"; */
+
+static const char col_foreground[] = "#dddddd";
+static const char col_background[] = "#222222";
+// black
+static const char col_color0[] = "#191919";
+static const char col_color8[] = "#252525";
+
+// red
+static const char col_color1[] = "#803232";
+static const char col_color9[] = "#982b2b";
+
+// green
+static const char col_color2[] = "#5b762f";
+static const char col_color10[] = "#89b83f";
+
+// yellow
+static const char col_color3[] = "#aa9943";
+static const char col_color11[] = "#efef60";
+
+// blue
+static const char col_color4[] = "#324c80";
+static const char col_color12[] = "#2b4f98";
+
+// magenta
+static const char col_color5[] = "#706c9a";
+static const char col_color13[] = "#826ab1";
+
+// cyan
+static const char col_color6[] = "#92b19e";
+static const char col_color14[] = "#a1cdcd";
+
+// white
+static const char col_color7[] = "#ffffff";
+static const char col_color15[] = "#dddddd";
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder  },
+	[SchemeNorm] = { col_foreground, col_background, col_color0 },
+	[SchemeSel]  = { col_background, col_foreground,  col_color5  },
+	[SchemeUrg]  = { col_foreground, col_background,  col_color3  },
 };
 
 /* tagging */
@@ -77,6 +113,7 @@ static const char *dmenucmd[] = { "rofi" , "-show", "run"};
 static const char *termcmd[]  = { "sakura", NULL };
 
 #include "movestack.c"
+#include "selfrestart.c"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -132,6 +169,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
 };
 
 /* button definitions */
